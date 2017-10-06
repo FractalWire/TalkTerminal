@@ -2,7 +2,8 @@
 
 TalkTerminal (tt) is a small script that uses the feature of [ dtach ]( https://github.com/crigler/dtach ) to automatically input command from one dtach session to another.
 
-Here is a ![simple screencast](./talkTerminal.gif) showing the functionalities of tt.
+Here is a simple screencas showing the functionalities of tt.
+![simple screencast](./talkTerminal.gif)
 
 The software is more a proof of concept in the current state and might need some adjustement for it to work like you'd like.
 
