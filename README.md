@@ -21,7 +21,7 @@ Now modify your `$PROMPT_COMMAND` variable so that it filters your input and exe
 An example is as follow :
 
 ```
-terminalA:$ PROMPT_COMMAND=history 1 | sed -n 's/^ *[0-9]* *\([[:alnum:]]*\).*/\1/p' |grep -E "\<(cd|cdp)\>" >/dev/null && source ~/.config/tt/actions/main
+terminalA:$ PROMPT_COMMAND='history 1 | sed -n "s/^ *[0-9]* *\([[:alnum:]]*\).*/\1/p" |grep -E "\<(cd|cdp)\>" >/dev/null && source ~/.config/tt/actions/main'
 ```
 
 A short explanation of the command above :
