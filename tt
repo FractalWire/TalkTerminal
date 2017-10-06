@@ -51,8 +51,16 @@ dt(){
         && echo "$2" | grep "/" \
         && echo "Bad socket name, no path require, only a name" >&2 \
         && return 1
+
     local mode="$1"
     local socket="$BASE_DIR/$2"
+
+    [[ -S $socket ]] \
+        && echo "Socket name already in use, choose something else" >&2 \
+        && return 1
+
+    #init socket actions
+    > "$ACTION_DIR/$2"
 
     # an array is needed for dtachEnding apparently
     local dtachEnding=
