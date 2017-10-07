@@ -88,7 +88,11 @@ dt(){
 
 # list all dtach socket available and specify which have been created by tt
 list(){
-    lsof -U | sed -n "s/^dtach.*0t0 [0-9]* \([^ ]*\) type=STREAM$/\1/p" | sed "s#\($BASE_DIR/\)\(.*\)#\1\2 (tt socket : \2)#p" |sort|uniq
+    lsof -U \
+        | tr -s " " \
+        | sed -n "s/^dtach.*0t0 [0-9]* \([^ ]*\) type=STREAM$/\1/p" \
+        | sed "s#\($BASE_DIR/\)\(.*\)#\1\2 (tt socket : \2)#p" \
+        | sort | uniq
     return 0
 }
 
@@ -98,7 +102,13 @@ whoami(){
     [[ -z $dtachParent ]] \
         && echo "This is not a dtach socket." >&2 \
         && return 1
-    lsof -U | grep $dtachParent | sed -n "s/^dtach.*0t0 [0-9]* [^ ]*\/\([^ ]*\) type=STREAM$/\1/p" |sort|uniq
+
+    lsof -U \
+        | grep $dtachParent \
+        | tr -s " " \
+        | sed -n "s/^dtach.*0t0 [0-9]* \([^ ]*\) type=STREAM$/\1/p" \
+        | sed "s#$BASE_DIR/\(.*\)#\1#p" \
+        | sort | uniq
     return 0
 }
 
