@@ -70,6 +70,7 @@ dt(){
 
     local mode="$1"
     local socket="$BASE_DIR/$2"
+    local actionFile="$ACTION_DIR/$2"
 
     # an array is needed for dtachEnding apparently
     local dtachEnding=
@@ -89,13 +90,13 @@ dt(){
                 && return 1
 
             #init socket actions
-            > "$ACTION_DIR/$2"
+            > $actionFile
 
             dtachEnding=( ${@:-$DEFAULT_DTACH_ENDING} )
             ;;
     esac
 
-    #echo dtach "$mode" "$socket" "${dtachEnding[@]}"
+    #echo dtach "$mode" "$socket" "${dtachEnding[@]}" > tmp
     dtach "$mode" "$socket" "${dtachEnding[@]}"\
         && return 0 \
         || return 1
